@@ -24,3 +24,22 @@ javascript:(function() {
 
     alert('Observer is set. Watching for changes...');
 })();
+
+
+//=======
+
+javascript:(function() {
+    var target = document.querySelector('div[data-tid="active-chat-list"].content.active.ts-tree-group');
+    if (!target) {
+        console.log('Target element not found.');
+        return;
+    }
+    var observer = new MutationObserver(function(mutations) {
+        var audio = new Audio('http://localhost:8000/audio'); // URL to your audio file
+        audio.play().catch(e => console.error('Error playing audio:', e));
+    });
+
+    var config = { childList: true, subtree: true };
+    observer.observe(target, config);
+    console.log('Observer is set. Watching for changes...');
+})();
